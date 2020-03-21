@@ -3,25 +3,17 @@ class Solution:
     def isPalindrome(self, x: int) -> bool:
         if x < 0:
             return False
-        n = 1
+
         in_order = []
         reverse_order = []
-        x = abs(x)
 
-        while x % 10**n < x:
-            target = int((x % 10**n - x % 10**(n-1)) / 10**(n-1))
+        while x > 0:
+            target = x % 10
             reverse_order.append(target)
             in_order.insert(0, target)
-            n += 1
-        reverse_order.append(int((x % 10**n - x % 10**(n-1)) / 10**(n-1)))
-        in_order.insert(0, int((x % 10**n - x % 10**(n-1)) / 10**(n-1)))
+            x //= 10
 
-        for i in range(len(in_order)):
-            if in_order[i] == reverse_order[i]:
-                continue
-            else:
-                return False
-        return True
+        return reverse_order == in_order
 
     def isPalindrome_string(self, x:int) -> bool:
         if x < 0 :
